@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Will you be my Valentine?</title>
+    <style>
+        body {
+            background-color: #e0d0f5;  /* Light purple background */
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #800080; /* Darker purple */
+        }
+
+        button {
+            background-color: #9932CC; /* Medium purple */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 15px; 
+        }
+
+        #photo {
+            display: none; /* Initially hide the photo */
+            width: 200px;  /* Smaller width */
+            height: auto;
+            float: left; 
+            margin-right: 20px;
+            border: 10px solid white; /* White border for polaroid effect */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+        }
+
+        #letter {
+            display: none; /* Initially hide the letter */
+        }
+
+        #content {
+            overflow: hidden; 
+        }
+
+        /* Mini-album Styles */
+        .album-slider {
+          max-width: 200px;
+          position: relative;
+          margin: 18px auto;
+        }
+
+        .album-slider img {
+          width: 100%;
+          height: auto;
+        }
+
+        .prev, .next {
+          background-color: #9932CC;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        .prev { 
+          left: 0;
+        }
+
+        .next {
+          right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my Valentine?</h1>
+
+        <button id="yesButton">Yes!</button>
+        <button id="noButton">No</button>
+
+        <div id="reply"></div> 
+
+        <div id="content"> 
+            <img id="photo" src="our_photo.jpg" alt="Our Photo"> 
+            <div id="letter">
+                <p>My Always,</p>
+                <p>Hello Babeeee,my loveee,my baby,my everythingg, and MY ALWAYSSSS. I just wanna tell you that thankyouu for choosing me and for staying also, i love youuuuuu like i really do dyud. Thank youu for choosing to be my valentine and huhuhuhuu  i love youuu, i love youuuuu my alwaysss mwahhhhh</p>
+                <p>Love always,</p>
+            </div>
+
+            <div id="album">
+                <div class="album-slider">
+                    <img src="our_Photo.jpg" alt="Photo 1">
+                    <img src="1.jpg" alt="Photo 2">
+                    <img src="2.jpg" alt="Photo 3">
+<img src="11.jpg" alt="Photo 4">
+<img src="12.jpg" alt="Photo 5">
+<img src="13.jpg" alt="Photo 6">
+<img src="14.jpg" alt="Photo 7">
+<img src="15.jpg" alt="Photo 8">
+<img src="16.jpg" alt="Photo 9">
+<img src="17.jpg" alt="Photo 10">
+<img src="18.jpg" alt="Photo 11>
+<img src="19.jpg" alt="Photo 12">
+<img src="20.jpg" alt="Photo 13">
+<img src="21.jpg" alt="Photo 14">
+                </div>
+                <button class="prev">Prev</button>
+                <button class="next">Next</button>
+            </div>
+        </div>
+    </div>
+    
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="your_music_file.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const reply = document.getElementById('reply');
+        const photo = document.getElementById('photo');
+        const letter = document.getElementById('letter');
+
+        yesButton.addEventListener('click', () => {
+            reply.textContent = 'Yay! You make me so happy! mwahhh💕';
+            photo.style.display = 'block'; 
+            letter.style.display = 'block';
+            noButton.style.display = 'none'; 
+        });
+
+        noButton.addEventListener('click', () => {
+            reply.textContent = 'Oh, okay... huhuhu😔';
+            yesButton.style.display = 'none';
+        });
+
+        // Mini-album / Carousel Logic
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("album-slider")[0].children;
+            if (n > slides.length) { slideIndex = 1 }    
+            if (n < 1) { slideIndex = slides.length }
+            for (let i = 0; i < slides.length; i++) { 
+                slides[i].style.display = "none";  
+            }
+            slides[slideIndex-1].style.display = "block";  
+        }
+
+        document.querySelector('.prev').addEventListener('click', () => changeSlide(-1));
+        document.querySelector('.next').addEventListener('click', () => changeSlide(1));
+    </script>
+</body>
+</html>
